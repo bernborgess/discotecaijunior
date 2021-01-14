@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Discoteca - Home
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+    <div class="col-sm">
+      <div class="tudo">
+      <h2 style="background-color: #6d00a3;border-radius: 0.2rem;text-align: center;color: #ededed;">Mais Álbuns Cadastrados</h2>
+      <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Foto</th>
+            <th scope="col">Artista</th>
+            <th scope="col">Albuns</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for artista in artistas %}
+          <tr>
+            <th scope="row">{{artista.id}}</th>
+            <td><img src="{% if artista.img %}{{artista.img}}{% else %}https://rlv.zcache.com.br/poster_icone_de_cantor_logotipo_karaoke-ra36fd3c510f849e4a54f2f0be43297fc_ixh_8byvr_540.jpg{% endif %}" alt="NULL IMG" style="object-fit: cover; height: 80px; width: 80px;"></td>
+            <td>{{artista.nome}}</td>
+            <td>
+              <p>{{numeroDeCadastros[loop.index0]}}</p>
+              </td>
+          </tr>
+          
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div style="background-color: white;width: 100%;border-radius: 0.2rem;text-align: center;">
+      <h2 style="background-color: #6d00a3;border-radius: 0.2rem;text-align: center;color: #ededed; margin-top: 15px;">Melhor média</h2>
+      <div class="card">
+        <img src="https://img.r7.com/images/beatles-09042020104848946" class="card-img-top" alt="">
+        <div class="card-body">
+          <p class="card-text">{The Beatles}</p>
+          <p class="card-text">⭐⭐⭐⭐⭐</p>
+    </div>
+      
+        </div>
+    </div>
+    </div>
+    <div class="col-sm">
+      <div class="tudo">
+      <h2 style="background-color: #6d00a3;border-radius: 0.2rem;text-align: center;color: #ededed;">Últimos cadastros</h2>
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">Álbuns</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Artista</th>
+            <th scope="col">Classificação</th>
+            <th scope="col">Formato</th> 
+          </tr>
+        </thead>
+        <tbody>
+          {% for album in albuns %}
+          <tr>
+            <td><img src="{% if album.img %}{{album.img}}{% else %}https://cdn.onlinewebfonts.com/svg/img_515447.png{% endif %}" alt="NULL IMG"  style="object-fit: cover; height: 80px; width: 80px;"></td>
+            <td>{{album.nome}}</td>
+            <td>{% if album.artistas %} {{album.artistas[0].nome}} {% else %}--{% endif%}</td>
+            <td>{% set x = album.avaliacao %}{% for i in range(x) %}⭐{% endfor %}</td>
+            <td>{{album.formato}}</td>
+            
+          </tr>
+          {% endfor %}
+                    
+          
+        </tbody>
+      </table></div>
+    </div>
+    </div>
+  </div>
+{% endblock content %}

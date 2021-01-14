@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{%block title%}
+Discoteca-Artista
+{% endblock title %}
+
+
+{%block content%}
+
+
+
+<div class="row">
+  <form class="col-sm-12" method="GET">   
+    <div class="pull-right">
+       <button class="btn btn-primary" type="submit" name="btnSubmit" value="Search" >
+        <i class="fa fa-search"></i>
+       </button>
+    </div> 
+    <div class ="form-group pull-right"> 
+      <input type="text" class="form-control" placeholder="Buscar album" style="border-color: #6d00a3;" name="q">
+    </div>
+  </form>
+</div>
+
+<!-- Segue abaixo a div do botão de cadastro de albuns -->
+<div class="d-grid gap-2">
+    <a href="{{url_for('album.cadastrar')}}"><button class="btn btn-primary" type="button" style="width: 100%;">Cadastrar Álbum</button></a>
+  </div>
+
+
+
+  
+<!-- Segue abaixo A tabela -->
+<div class="table-responsive tudo">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Álbuns</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Ano</th>
+        <th scope="col">Artista</th>
+        <th scope="col">Genero</th>
+        <th scope="col">Duração</th>
+        <th scope="col">Classificação</th>
+        <th scope="col">Formato</th> 
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for album in albuns %}
+      <tr>
+        <th scope="row">{{album.id}}</th>
+        <td><img src="{% if album.img %}{{album.img}}{% else %}https://cdn.onlinewebfonts.com/svg/img_515447.png{% endif %}" alt="NULL IMG"  style="border-radius: 0.2rem; object-fit: cover; height: 80px; width: 80px;"></td>
+        <td><a href="{{url_for('album.perfil',_id=album.id)}}">{{album.nome}}</a></td>
+        <td>{{album.ano}}</td>
+        <td>{%if album.artistas%}{%for artista in album.artistas%}{{artista.nome}} {%endfor%}{%else%}--{%endif%}</td>
+        <td>{{album.genero_musical}}</td>
+        <td>{{album.duracao}}</td>
+        <td>{% set x = album.avaliacao %}{% for i in range(x) %}⭐{% endfor %}</td>
+        <td>{{album.formato}}</td>
+      </tr>
+      {% endfor %}
+         
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Album - {{album.nome}}
+{% endblock title %}
+
+{% block content %}
+<!-- <h1>{{album.nome}}</h1>
+<h4>{{album.pais}}</h4> -->
+
+<div class="card mb-3">
+                
+                    <div class="card-header card-header-primary text-center" >
+                        <h4 class="card-title">
+                            <h1 style="font-size: min(30vw, 30px);;font-weight: 700;">{{album.nome}}</h1>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" style="margin: auto; text-align: center; padding: 8px 20px;">
+                            <div class="col-sm">
+                             <img src="{% if album.img %}{{album.img}}{% else %}https://cdn.onlinewebfonts.com/svg/img_515447.png{% endif %}" alt="NULL IMG" style="width: 100%; max-width: 400px;">
+                            </div>
+                            <div class="col-sm">                         
+                            <ul id="info" style="color: #4f4f4f;" class="list-group">
+                                <li class="list-group-item">Autoria: {%if album.artistas%}{%for artista in album.artistas%}{{artista.nome}} {%endfor%}{%else%}--{%endif%}</li>
+                                <li class="list-group-item">Lançado em {{album.ano}}</li>
+                                <li class="list-group-item">Gênero: {{album.genero_musical}}</li>
+                                <li class="list-group-item">Idioma: {{album.idioma}}</li>
+                                <li class="list-group-item">Duração: {{album.duracao}}</li>
+                                <li class="list-group-item">Formato: {{album.formato}}</li>
+                                <li class="list-group-item">Avaliação: {% set x = album.avaliacao %}{% for i in range(x) %}⭐{% endfor %}</li>
+                            </ul> 
+                            <td>
+                                <a href="{{url_for('album.editar',_id=album.id)}}"><button class="btn btn-primary" ><i class="fas fa-edit"></i></button></a>
+                                <a href="{{url_for('album.excluir',_id=album.id)}}"><button class="btn btn-primary" ><i class="fa fa-minus-square"></i></button></a>
+                                <a href="{{url_for('album.associar_artista',_id=album.id)}}"><button class="btn btn-primary" ><i class="fa fa-plus-square"></i></button></a>
+                            </td>
+                             </div> 
+                        </div>
+                    
+                    </div>
+                    <!-- /.login-card-body -->
+                </div>
+        
+</div>    
+
+
+
+
+{% endblock content %}

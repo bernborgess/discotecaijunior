@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{%block title%}
+Cadastrar Artista
+{% endblock title %}
+
+
+{%block content%}
+Cadastrar
+<div class="container-fluid tudo" style="
+    text-align: initial;
+">
+    <form action="" method="POST">
+        <label for="nome">Nome do Artista:</label>
+        <input type="text" name="nome" id="nome" class="form-control" placeholder="Michael Jackson" required=>
+        <br>
+        <label for="nome">Gênero</label>
+        <input type="text" name="genero_musical" id="genero_musical" class="form-control" placeholder="Rock" required=>
+        <br>
+        <label for="nome">País</label>
+        <input type="text" name="pais" id="pais" class="form-control" placeholder="EUA" required=>
+        <br>
+        <label for="nome">Imagem</label>
+        <input type="text" name="img" id="img" class="form-control" placeholder="link" content="">
+        <br>
+        <input type="submit" value="Cadastrar!" class="btn btn-primary">
+    </form>
+</div>
+
+
+{% endblock %}
